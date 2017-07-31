@@ -7,9 +7,14 @@
   </head>
   <body>
 <h1>Hangman Game</h1>
-<form method="post">
+<p>You have {{count}} guesses left</p>
+<p>{{underscores}}</p>
+<form action="/" method="post">
   <input type="text" name="guess" placeholder="Guess a Letter">
   <input type="submit" name="submit" value="Submit">
 </form>
+<h3>Guessed Letters</h3>
+<span>{{guessedLetters}}</span>
+<p class="hidden">{{word}}</p>
   </body>
 </html>
