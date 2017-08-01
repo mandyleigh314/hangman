@@ -1,0 +1,36 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: 'Zilla Slab Highlight', cursive;
+}
+
+input[type=text] {
+  font-family: 'Quicksand', sans-serif;
+  padding: 4px;
+  font-size: 15px;
+  width: 100px;
+}
+
+input[type=submit] {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 15px;
+  padding: 10px;
+  background-color: white;
+}
+
+.answer {
+  font-size: 40px;
+}
+
+.hidden {
+  color: white;
+}

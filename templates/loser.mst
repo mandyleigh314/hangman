@@ -2,36 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Mystery Word Game</title>
+    <title>You Lost!</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand|Zilla+Slab+Highlight" rel="stylesheet">
-    <script type="text/javascript">
-      let message = '{{message}}'
-
-      if (message) {
-        alert(message)
-      }
-    </script>
   </head>
   <body>
     <div id="wrapper">
 <h1>Mystery Word Game</h1>
-{{#message}}
-<h2>{{.}}</h2>
-{{/message}}
-<p>You have {{count}} guesses left</p>
+<h2 id="winner">Sorry, You Have Lost!</h2>
+<h3>The answer was {{word}}.</h3>
 <p>
   {{#underscores}}
     <span class="answer">{{.}}</span>
   {{/underscores}}
 </p>
-<form action="/" method="post">
-  <input type="text" name="guess" placeholder="Guess a Letter" required="required" maxlength="1">
-  <input type="submit" name="submit" value="Submit" class="submit">
-</form>
 <h4>Guessed Letters</h4>
 <span>{{guesses}}</span>
-<p class="hidden">{{word}}</p>
 <form action="/reset" method="post">
   <input type="submit" name="reset" value="Reset">
 </form>
