@@ -114,6 +114,11 @@ app.post('/', (req, res) => {
 
 app.post('/reset', (req, res) => {
   req.session.word = null
+  req.session.wordInPlay = null
+  req.session.count = 8
+  req.session.guessedLetters = null
+  req.session.guesses = null
+  req.session.underscores = null
   res.redirect('/')
 })
 
