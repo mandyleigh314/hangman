@@ -16,9 +16,6 @@
   <body>
     <div id="wrapper">
 <h1>Mystery Word Game</h1>
-{{#message}}
-<h2>{{.}}</h2>
-{{/message}}
 <p>You have {{count}} guesses left</p>
 <p>
   {{#underscores}}

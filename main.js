@@ -75,7 +75,7 @@ app.post('/', (req, res) => {
   let underscores = req.session.underscores
 
   if (guessedLetters.includes(req.body.guess)) {
-    message = 'You have already chosen that letter.'
+    req.session.message = 'You have already chosen that letter.'
     res.redirect('/')
     return
   } else if (req.session.wordInPlay.includes(req.body.guess)) {
