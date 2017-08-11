@@ -68,6 +68,8 @@ app.post('/', (req, res) => {
   let underscores = req.session.underscores
   let guess = req.body.guess.toLowerCase()
   let regexp = /[^a-z]/
+  req.session.loser = false
+  req.session.winner = false
 
   if (guess.match(regexp)) {
     req.session.message = `${guess} is not a letter`
@@ -86,7 +88,9 @@ app.post('/', (req, res) => {
   } else {
     req.session.count -= 1
     if (req.session.count === 0) {
-      res.render('loser', req.session)
+      req.session.loser = true
+      req.session.gameOver = true
+      res.redirect('/')
       return
     }
   }
@@ -95,7 +99,9 @@ app.post('/', (req, res) => {
   req.session.guesses = guessedLetters.slice('').join(' ')
 
   if (!underscores.includes('_')) {
-    res.render('winner', req.session)
+    req.session.winner = true
+    req.session.gameOver = true
+    res.redirect('/')
     return
   }
   res.redirect('/')
@@ -108,6 +114,9 @@ app.post('/reset', (req, res) => {
   req.session.guessedLetters = null
   req.session.guesses = null
   req.session.underscores = null
+  req.session.gameOver = null
+  req.session.winner = null
+  req.session.loser = null
   res.redirect('/')
 })
 

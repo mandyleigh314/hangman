@@ -16,7 +16,7 @@
   <body>
     <div id="wrapper">
 <h1>Mystery Word Game</h1>
-<div class="screen">
+{{^gameOver}}
 <p>You have {{count}} guesses left</p>
 <p>
   {{#underscores}}
@@ -30,10 +30,31 @@
 <h4>Guessed Letters</h4>
 <span>{{guesses}}</span>
 <p class="hidden">{{word}}</p>
+{{/gameOver}}
+{{#loser}}
+<h2 id="winner">Sorry, You Have Lost!</h2>
+<h3>The answer was {{word}}.</h3>
+<p>
+  {{#underscores}}
+    <span class="answer">{{.}}</span>
+  {{/underscores}}
+</p>
+<h4>Guessed Letters</h4>
+<span>{{guesses}}</span>
+{{/loser}}
+{{#winner}}
+<h2 id="winner">Congratulations, You Have Won!</h2>
+<p>
+  {{#underscores}}
+    <span class="answer">{{.}}</span>
+  {{/underscores}}
+</p>
+<h4>Guessed Letters</h4>
+<span>{{guesses}}</span>
+{{/winner}}
 <form action="/reset" method="post">
   <input type="submit" name="reset" value="Reset">
 </form>
-</div>
 </div>
 <script src="/main.js" charset="utf-8"></script>
   </body>
