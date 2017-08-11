@@ -55,14 +55,7 @@ app.get('/', (req, res) => {
   let guesses = req.session.guesses
   let message = req.session.message
 
-  res.render('index', {
-    count: req.session.count,
-    underscores: req.session.underscores,
-    guessedLetters: req.session.guessedLetters,
-    guesses: req.session.guesses,
-    word: req.session.word,
-    message: req.session.message
-  })
+  res.render('index', req.session)
 })
 
 app.post('/', (req, res) => {
@@ -73,40 +66,36 @@ app.post('/', (req, res) => {
   let guessedLetters = req.session.guessedLetters
   let guesses = req.session.guesses
   let underscores = req.session.underscores
+  let guess = req.body.guess.toLowerCase()
+  let regexp = /[^a-z]/
 
-  if (guessedLetters.includes(req.body.guess)) {
+  if (guess.match(regexp)) {
+    req.session.message = `${guess} is not a letter`
+    res.redirect('/')
+    return
+  } else if (guessedLetters.includes(guess)) {
     req.session.message = 'You have already chosen that letter.'
     res.redirect('/')
     return
-  } else if (req.session.wordInPlay.includes(req.body.guess)) {
+  } else if (req.session.wordInPlay.includes(guess)) {
     for (let k = 0; k < req.session.wordInPlay.length; k++) {
-      if (req.session.wordInPlay[k] === req.body.guess) {
-        req.session.underscores.splice(k, 1, req.body.guess)
+      if (req.session.wordInPlay[k] === guess) {
+        req.session.underscores.splice(k, 1, guess)
       }
     }
   } else {
     req.session.count -= 1
     if (req.session.count === 0) {
-      res.render('loser', {
-        count: req.session.count,
-        underscores: req.session.underscores,
-        guesses: req.session.guesses,
-        word: req.session.word
-      })
+      res.render('loser', req.session)
       return
     }
   }
 
-  req.session.guessedLetters.push(req.body.guess)
+  req.session.guessedLetters.push(guess)
   req.session.guesses = guessedLetters.slice('').join(' ')
 
   if (!underscores.includes('_')) {
-    res.render('winner', {
-      count: req.session.count,
-      underscores: req.session.underscores,
-      guesses: req.session.guesses,
-      word: req.session.word
-    })
+    res.render('winner', req.session)
     return
   }
   res.redirect('/')

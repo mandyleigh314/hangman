@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>You Won!</title>
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand|Zilla+Slab+Highlight" rel="stylesheet">
-  </head>
-  <body>
-    <div id="wrapper">
-<h1>Mystery Word Game</h1>
 <h2 id="winner">Congratulations, You Have Won!</h2>
 <p>
   {{#underscores}}
@@ -20,6 +9,3 @@
 <form action="/reset" method="post">
   <input type="submit" name="reset" value="Reset">
 </form>
-</div>
-  </body>
-</html>

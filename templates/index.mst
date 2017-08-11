@@ -16,6 +16,7 @@
   <body>
     <div id="wrapper">
 <h1>Mystery Word Game</h1>
+<div class="screen">
 <p>You have {{count}} guesses left</p>
 <p>
   {{#underscores}}
@@ -33,5 +34,7 @@
   <input type="submit" name="reset" value="Reset">
 </form>
 </div>
+</div>
+<script src="/main.js" charset="utf-8"></script>
   </body>
 </html>
